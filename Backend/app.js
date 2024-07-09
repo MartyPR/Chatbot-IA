@@ -3,6 +3,12 @@
 import OpenAI from "openai";
 import dotenv from "dotenv";
 import express from "express";
+import cors from "cors";
+
+const corsOption={
+  origin:['http://localhost:5173','http://localhost:5174']
+}
+
 
 dotenv.config();
 //authentciated with our api
@@ -14,6 +20,7 @@ const app = express();
 const PORT = process.env.PORT || 9090;
 //! passin incoming
 app.use(express.json());
+app.use(cors(corsOption))
 //!Global variable to honld the conversation hisztory
 let conversationHistory = [
   {
